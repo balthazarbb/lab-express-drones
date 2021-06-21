@@ -1,16 +1,19 @@
-// Iteration
-// require schema and model from mongoose
-const { Schema, model } = require("mongoose")
+const mongoose = require('mongoose') // we use mongoose to create our Schema and model
 
-// Schema is the format our DB elements will have
-const droneSchema = new Schema({
-  name: String,
-  // number right?
-  propellers: Number,
-  maxSpeed: Number,
-},)
+// Using the .Schema() method will create the schema of our drones, giving them a format inside our Database.
+let droneSchema = new mongoose.Schema({
+    name: {
+      type: String
+    },
+    propellers: {
+      type: Number
+    },
+    maxSpeed: {
+      type: Number
+    }
+})
 
-// this will create the model we use for accesing the drone collection
-const DroneExp = model("DroneExp", droneSchema) 
+let DroneModel = mongoose.model('drone', droneSchema) // using the .model() method will create the model based on the droneSchema
+// The above code also defines the name for our collection. Its name will be the model name ('drone') in plural ('drones')
 
-module.exports = DroneExp 
+module.exports = DroneModel
